@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "preserve",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "emitDeclarationOnly": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "packages/**/**/*",
+    "packages/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
