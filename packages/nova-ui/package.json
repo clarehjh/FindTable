@@ -1,0 +1,28 @@
+{
+  "name": "@clare-ui/nova-ui",
+  "version": "0.1.0",
+  "private": false,
+  "sideEffects": false,
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "vue": "^3.3.0",
+    "element-plus": "^2.0.0"
+  },
+  "dependencies": {
+    "@clare-ui/table": "0.1.0",
+    "@clare-ui/upload": "0.1.0",
+    "@clare-ui/core": "0.1.0"
+  }
+}

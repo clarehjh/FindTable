@@ -1,6 +1,7 @@
 {
   "name": "FindTable",
   "version": "1.0.0",
+  "private": true,
   "packageManager": "pnpm@8.6.10",
   "description": "二次封装element-plus的Table，提供灵活的配置项",
   "keywords": [
@@ -25,39 +26,25 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "jsdelivr": "dist/index.umd.js",
-  "unpkg": "dist/index.umd.js",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
-    },
     "./volar": {
       "types": "./volar.d.ts"
     },
     "./*": "./*"
   },
   "files": [
-    "dist",
     "volar.d.ts"
   ],
-  "style": "dist/style.css",
   "sideEffects": false,
   "scripts": {
-    "dev": "vite",
-    "test": "vitest run",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lib": "vite build && vue-tsc -p tsconfig.build.json",
-    "lint": "prettier --write  \"packages/**/*.{ts,tsx}\" \"__tests__/table.test.tsx\" \"src/*.{ts,tsx,vue}\"",
-    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
-    "lint:pretty": "pretty-quick --staged",
-    "pub": "pub lib",
-    "prepare": "husky install"
+    "build": "pnpm run build:all",
+    "lib": "vite build",
+    "build:table": "cross-env LIB_ENTRY=packages/table/src/index.ts LIB_NAME=Table LIB_OUTDIR=packages/table/dist LIB_EXTERNALS=@clare-ui/core vite build",
+    "build:upload": "cross-env LIB_ENTRY=packages/upload/src/index.ts LIB_NAME=Upload LIB_OUTDIR=packages/upload/dist LIB_EXTERNALS= vite build",
+    "build:core": "cross-env LIB_ENTRY=packages/core/src/index.ts LIB_NAME=Core LIB_OUTDIR=packages/core/dist LIB_EXTERNALS= vite build",
+    "build:nova": "cross-env LIB_ENTRY=packages/nova-ui/src/index.ts LIB_NAME=NovaUI LIB_OUTDIR=packages/nova-ui/dist LIB_EXTERNALS=@clare-ui/table,@clare-ui/upload,@clare-ui/core vite build",
+    "build:all": "pnpm run build:core && pnpm run build:table && pnpm run build:upload && pnpm run build:nova",
+    "pub": "pub lib"
   },
   "peerDependencies": {
     "element-plus": "^2.0.0"
@@ -68,30 +55,19 @@
     "vue": "^3.4.37"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "@commitlint/types": "^18.4.3",
-    "@intlify/unplugin-vue-i18n": "^2.0.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^20.10.5",
     "@types/sortablejs": "^1.15.8",
     "@vitejs/plugin-vue": "^4.4.1",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "@vue/test-utils": "^2.4.3",
-    "husky": "^8.0.3",
-    "jsdom": "^23.0.1",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1",
+    "cross-env": "^10.0.0",
     "resize-observer-polyfill": "^1.5.1",
     "rollup": "^4.3.0",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "typescript": "^5.3.3",
     "vite": "4.5.1",
-    "vite-svg-loader": "^5.1.0",
-    "vitest": "0.34.6",
-    "vue-i18n": "^9.8.0",
-    "vue-tsc": "^1.8.27"
+    "vite-svg-loader": "^5.1.0"
   },
   "pnpm": {
     "peerDependencyRules": {
